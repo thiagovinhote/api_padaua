@@ -4,11 +4,6 @@ require "config/Conexao.php";
 class TimeDAO{
     private $conexao;
 
-    // public function TimeDAO(){
-    //     $conexao = Conexao::getShared();
-    //     $this->conexao = $conexao->getDB();
-    // }
-
     public function TimeDAO() {
         $conexao = Conexao::getShared();
         $this->conexao = $conexao->getDb();
@@ -22,7 +17,7 @@ class TimeDAO{
             return [];
         }
         else{
-            return $result->fetch_all(MYSQLLI_ASSOC);
+            return $result->fetch_all(MYSQLI_ASSOC);
         }
     }
 }

@@ -13,6 +13,7 @@ class TimeController {
         switch($_SERVER["REQUEST_METHOD"]){
             case "GET":
                 echo "GET";
+                $this->listar();
                 break;
             case "POST":
                 echo "POST";
@@ -27,5 +28,16 @@ class TimeController {
                 http_response_code(405);
                 echo "Método não implementado";
         }
+    }
+
+    protected function listar() {
+        $lista = $this->dao->listar();
+        if(count($lista) == 0){
+            http_response_code(404);
+        } else {
+            http_response_code(200);
+        }
+        echo json_encode($lista);
+        // var_dump($lista);
     }
 }

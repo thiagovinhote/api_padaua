@@ -15,6 +15,7 @@ class Conexao {
 }
 
   public function getDB() {
+    $this->db->set_charset('utf8');
     return $this->db;
   }
 }

@@ -7,6 +7,7 @@ class Conexao {
 
   private function Conexao(){
     $this->db = new mysqli("localhost", "root", "", "dbpadaua");
+    $this->db->set_charset('utf8');
   }
 
   public static function getShared() {

@@ -1,0 +1,17 @@
+#Referencia: http://www.htaccessredirect.net/
+
+#Trata os índices
+IndexIgnore *
+Options -Indexes
+
+#Redirecionamentos
+RewriteEngine On
+
+#Nao aplica a condicao para arquivos
+RewriteCond %{SCRIPT_FILENAME} !-f
+
+#Na aplica a condiao para diretorios
+RewriteCond %{SCRIPT_FILENAME} !-d
+
+#Redireciona para index.php, e transforma qualquer coisa que vir na URL no parametro de URL
+RewriteRule ^(.*)$ index.php?param=$1

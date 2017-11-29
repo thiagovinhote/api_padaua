@@ -42,8 +42,7 @@ class UsuarioController {
     } else {
       http_response_code(200);
     }
-
-    echo "Normal: ",  json_encode($list), "\n";
+    echo json_encode($list);
   }
 
 }

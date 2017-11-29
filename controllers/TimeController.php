@@ -1,5 +1,5 @@
 <?php
-require "models/TimeDAO.php";
+require "models/dao/TimeDAO.php";
 
 class TimeController {
     private $dao;
@@ -37,6 +37,5 @@ class TimeController {
             http_response_code(200);
         }
         echo json_encode($lista);
-        // var_dump($lista);
     }
 }

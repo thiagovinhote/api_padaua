@@ -3,17 +3,17 @@
 require "config/Conexao.php";
 require "interfaces/DAOInterface.php";
 
-class UsuarioDAO implements DAOInterface {
+class RoteiroDAO implements DAOInterface {
 
   private $conexao;
 
-  public function UsuarioDAO() {
+  public function RoteiroDAO() {
     $conexao = Conexao::getShared();
     $this->conexao = $conexao->getDB();
   }
 
   public function getAll() {
-    $sql = "SELECT * FROM usuario;";
+    $sql = "SELECT * FROM roteiro;";
     $resultado = $this->conexao->query($sql);
     if($resultado->num_rows == 0){
         return [];
@@ -23,7 +23,7 @@ class UsuarioDAO implements DAOInterface {
   }
 
   public function getById($id) {
-    $sql = "SELECT * FROM usuario WHERE id = ". $id;
+    $sql = "SELECT * FROM roteiro WHERE id = ". $id;
     $result = $this->conexao->query($sql);
     if($result->num_rows == 0) {
       return null;
@@ -41,7 +41,9 @@ class UsuarioDAO implements DAOInterface {
   }
 
   public function delete($id) {
-
+    $sql = "DELETE FROM roteiro WHERE id = ". $id;
+    var_dump($sql);
+    return $this->conexao->query($sql);
   }
 
 }

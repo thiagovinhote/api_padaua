@@ -47,6 +47,11 @@ class BaseController {
     }
 
     protected function getById($id) {
+      if(empty($id)){
+        http_response_code(404);
+        echo "É necessário informar um id";
+        return;
+      }
       $object = $this->DAO->getById($id);
       if($object == null) {
         http_response_code(404);

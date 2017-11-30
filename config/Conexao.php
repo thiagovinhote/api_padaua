@@ -14,6 +14,8 @@ class Conexao {
   private $db;
 
   private function Conexao(){
+    var_dump($dbparts);
+    var_dump($url);
     var_dump($hostname);
     var_dump($username);
     var_dump($password);

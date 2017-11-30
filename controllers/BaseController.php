@@ -25,7 +25,7 @@ class BaseController {
               $this->save();
               break;
           case "PUT":
-
+              $this->update();
               break;
           case "DELETE":
               $this->delete();
@@ -93,6 +93,11 @@ class BaseController {
          http_response_code(201);
       }
       echo json_encode($result);
+    }
+
+    protected function update() {
+      $id = $_GET["id"];
+      echo json_encode($id);
     }
 
     protected function delete() {

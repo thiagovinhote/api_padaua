@@ -32,7 +32,7 @@ class BaseController {
               break;
           default:
               http_response_code(405);
-              echo "Método não implementado";
+              echo json_encode("Método não implementado.");
       }
     }
 
@@ -47,9 +47,10 @@ class BaseController {
     }
 
     protected function getById($id) {
-      if(empty($id) || !is_int($id)){
+      $id = (int)$id;
+      if(empty($id)){
         http_response_code(404);
-        echo "É necessário informar um id válido";
+        echo json_encode("É necessário informar um id válido.");
         return;
       }
       $object = $this->DAO->getById($id);
@@ -66,7 +67,7 @@ class BaseController {
 
       if(count($properties) > 0) {
         http_response_code(400);
-        echo "Os campos ". json_encode($properties) ." são obrigatórios";
+        echo json_encode("Os campos ". json_encode($properties) ." são obrigatórios.");
         return false;
       } else {
         return true;
@@ -96,16 +97,17 @@ class BaseController {
 
     protected function delete() {
       $id = $_GET["id"];
-      if(!$id){
+      $id = (int)$id;
+      if(empty($id)){
         http_response_code(404);
-        echo "É necessário informar o id";
+        echo json_encode("É necessário informar um id válido.");
         return;
       }
 
       $object = $this->DAO->getById($id);
       if(!$object) {
         http_response_code(404);
-        echo 'Objeto com o id '. $id. ' não foi encontrado.';
+        echo json_encode('Objeto com o id '. $id. ' não foi encontrado.');
         return;
       }
 
@@ -113,7 +115,7 @@ class BaseController {
 
       if(!$result) {
         http_response_code(404);
-        echo "Erro ao tentar deletar";
+        echo json_encode("Erro ao tentar deletar.");
       } else {
         http_response_code(200);
         echo json_encode($object);

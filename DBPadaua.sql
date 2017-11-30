@@ -94,7 +94,7 @@ CREATE TABLE roteiro (
     id INT(10) NOT NULL AUTO_INCREMENT,
     intervalo_entregas INT(10) NOT NULL,
     progresso DOUBLE NOT NULL,
-    template_id INT(10) NOT NULL,
+    template_id INT(10),
     time_id INT(10) NOT NULL,
     PRIMARY KEY(id)
 )ENGINE = INNODB;
@@ -164,13 +164,13 @@ REFERENCES metodologia(id) ON DELETE CASCADE;
 ALTER TABLE template
 ADD CONSTRAINT fk_metodologia_template
 FOREIGN KEY(metodologia_id)
-REFERENCES metodologia(id);
+REFERENCES metodologia(id) ON DELETE CASCADE;
 
 #adicionar FK template na roteiro
 ALTER TABLE roteiro
 ADD CONSTRAINT fk_template_roteiro
 FOREIGN KEY(template_id)
-REFERENCES template(id);
+REFERENCES template(id) ON DELETE SET NULL;
 
 #adicionar FK time na roteiro
 ALTER TABLE roteiro
@@ -367,8 +367,8 @@ INSERT INTO campo_atuacao(
 );
 
 #popular tabela de metodologia
-INSERT INTO metodologia (nome, descricao) VALUES ('SCRUM','A metodologia Scrum utiliza princípios ágeis para gerenciar o 
-processo de desenvolvimento de software nas equipes desenvolvedoras. Abstraindo diversos aspectos documentais do processo 
+INSERT INTO metodologia (nome, descricao) VALUES ('SCRUM','A metodologia Scrum utiliza princípios ágeis para gerenciar o
+processo de desenvolvimento de software nas equipes desenvolvedoras. Abstraindo diversos aspectos documentais do processo
 de desenvolvimento tradicional, o Scrum oferece a possibilidade de auto-gerenciamento por parte de seus times');
 #inicio das alterações -----> here
 INSERT INTO metodologia (nome, descricao) VALUES ('KANBAN','Kanban é um termo de origem japonesa e significa literalmente “cartão” ou “sinalização”. Este é um conceito relacionado com a utilização de cartões (post-it e outros) para indicar o andamento dos fluxos de produção em empresas de fabricação em série.');
@@ -666,4 +666,4 @@ SELECT * FROM usuario WHERE id IN(1,2,3) ORDER BY id;
 
 SELECT * FROM usuario ORDER BY nome LIMIT 4;
 
-SELECT * FROM entrega WHERE data BETWEEN '2017/10/03' AND '2017/10/08'; 
+SELECT * FROM entrega WHERE data BETWEEN '2017/10/03' AND '2017/10/08';

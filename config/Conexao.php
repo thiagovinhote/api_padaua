@@ -13,12 +13,7 @@ class Conexao {
     $username = $dbparts['user'];
     $password = $dbparts['pass'];
     $database = ltrim($dbparts['path'],'/');
-    var_dump($dbparts);
-    var_dump($url);
-    var_dump($hostname);
-    var_dump($username);
-    var_dump($password);
-    var_dump($database);
+    
     $this->db = new mysqli($hostname, $username, $password, $database);
     $this->db->set_charset('utf8');
   }

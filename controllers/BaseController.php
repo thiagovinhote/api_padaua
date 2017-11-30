@@ -3,8 +3,12 @@
 class BaseController {
 
     protected $DAO;
+    protected $required;
+    private $modelBean;
 
-    public function BaseController(){
+    public function BaseController($modelBean){
+        $this->modelBean = $modelBean;
+        require "models/beans/".$modelBean.".php";
         $this->checkAction();
     }
 
@@ -18,7 +22,7 @@ class BaseController {
               }
               break;
           case "POST":
-
+              $this->save();
               break;
           case "PUT":
 
@@ -50,6 +54,39 @@ class BaseController {
         http_response_code(200);
       }
       echo json_encode($object);
+    }
+
+    private function checkParams($object) {
+      $properties = $object->check($this->required);
+
+      if(count($properties) > 0) {
+        http_response_code(400);
+        echo "Os campos ". json_encode($properties) ." são obrigatórios";
+        return false;
+      } else {
+        return true;
+      }
+
+    }
+
+    protected function save() {
+      $json = file_get_contents("php://input");
+      $dados = json_decode($json, true);
+
+      $model = new $this->modelBean();
+      $model->set($dados);
+
+      if(!$this->checkParams($model)) {
+        return;
+      }
+
+      $result = $this->DAO->save($model);
+      if($result == null){
+         http_response_code(500);
+      } else {
+         http_response_code(201);
+      }
+      echo json_encode($result);
     }
 
     protected function delete() {

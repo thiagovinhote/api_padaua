@@ -33,7 +33,19 @@ class RoteiroDAO implements DAOInterface {
   }
 
   public function save($object) {
+    $sql = "INSERT INTO roteiro (intervalo_entregas, progresso, template_id, time_id) VALUES ("
+            .$object->getIntervaloEntregas().", "
+            .$object->getProgresso().", "
+            .$object->getTemplateId().", "
+            .$object->getTimeId().")";
 
+    $resultado = $this->conexao->query($sql);
+    if(!$resultado){
+      return null;
+    } else {
+      $id = $this->conexao->insert_id;
+      return $this->getById($id);
+    }
   }
 
   public function update($object) {

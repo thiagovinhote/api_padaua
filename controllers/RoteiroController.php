@@ -10,7 +10,8 @@ class RoteiroController extends BaseController {
 
   public function RoteiroController() {
     $this->DAO = new RoteiroDAO();
-    parent::BaseController();
+    $this->required = array('intervalo_entregas', 'progresso', 'template_id', 'time_id');
+    parent::BaseController("Roteiro");
   }
 
 }

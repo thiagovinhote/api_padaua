@@ -34,9 +34,8 @@ class MetodologiaDAO implements DAOInterface {
 
   public function save($object) {
     $sql = "INSERT INTO metodologia (nome, descricao) VALUES ("
-            .$object->getNome().", "
-            .$object->getDescricao().")";
-
+            ."'".$object->getNome()."', "
+            ."'".$object->getDescricao()."')";
     $resultado = $this->conexao->query($sql);
     if(!$resultado){
       return null;

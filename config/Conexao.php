@@ -14,6 +14,10 @@ class Conexao {
   private $db;
 
   private function Conexao(){
+    var_dump($hostname);
+    var_dump($username);
+    var_dump($password);
+    var_dump($database);
     $this->db = new mysqli($hostname, $username, $password, $database);
     $this->db->set_charset('utf8');
   }

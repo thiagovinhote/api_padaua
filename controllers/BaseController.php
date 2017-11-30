@@ -97,6 +97,7 @@ class BaseController {
 
     protected function update() {
       $id = $_GET["id"];
+      $id = (int)$id;
       echo json_encode($id);
     }
 

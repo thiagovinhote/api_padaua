@@ -1,19 +1,18 @@
 <?php
 
-$url = getenv('JAWSDB_MARIA_URL');
-$dbparts = parse_url($url);
-
-$hostname = $dbparts['host'];
-$username = $dbparts['user'];
-$password = $dbparts['pass'];
-$database = ltrim($dbparts['path'],'/');
-
 class Conexao {
 
   private static $shared;
   private $db;
 
   private function Conexao(){
+    $url = getenv('JAWSDB_MARIA_URL');
+    $dbparts = parse_url($url);
+    
+    $hostname = $dbparts['host'];
+    $username = $dbparts['user'];
+    $password = $dbparts['pass'];
+    $database = ltrim($dbparts['path'],'/');
     var_dump($dbparts);
     var_dump($url);
     var_dump($hostname);

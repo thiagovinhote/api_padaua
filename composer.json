@@ -1,0 +1,14 @@
+{
+    "name": "padaua/api",
+    "description": "API de um centro de ideias",
+    "require": {
+        "php": "^7.1"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Thiago Vinhote",
+            "email": "thiagovf26@outlook.com"
+        }
+    ]
+}

@@ -1,4 +1,4 @@
-# padawan-ideas-api
+# padaua
 
 É uma RESTFul API feita em PHP, com ela é possivel..
 
@@ -6,7 +6,7 @@
 
 MIT License
 
-Copyright (c) 2017 David Camurça
+Copyright (c) 2017 Thiago Vinhote
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

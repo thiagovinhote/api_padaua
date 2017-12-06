@@ -48,13 +48,23 @@ class RoteiroDAO implements DAOInterface {
     }
   }
 
-  public function update($object) {
+  public function update($object, $id) {
+    $sql = "UPDATE roteiro SET "
+            ."intervalo_entregas = ".$object->getIntervaloEntregas().", "
+            ."progresso = ".$object->getProgresso().", "
+            ."template_id = ".$object->getTemplateId().", "
+            ."time_id = ".$object->getTimeId()." WHERE id = $id";
 
+    $resultado = $this->conexao->query($sql);
+    if(!$resultado){
+        return null;
+    } else {
+        return $this->getById($id);
+    }
   }
 
   public function delete($id) {
     $sql = "DELETE FROM roteiro WHERE id = ". $id;
     return $this->conexao->query($sql);
   }
-
 }

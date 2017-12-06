@@ -1,6 +1,8 @@
 <?php
 
-class Usuario {
+require "models/beans/BaseModel.php";
+
+class Usuario extends BaseModel{
 
   private $id;
   private $nome;

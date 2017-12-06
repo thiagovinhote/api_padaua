@@ -36,7 +36,7 @@ class UsuarioDAO implements DAOInterface {
 
   }
 
-  public function update($object) {
+  public function update($object, $id) {
 
   }
 

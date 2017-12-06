@@ -45,8 +45,17 @@ class MetodologiaDAO implements DAOInterface {
     }
   }
 
-  public function update($object) {
+  public function update($object, $id) {
+    $sql = "UPDATE metodologia SET "
+            ."nome = '".$object->getNome()."', "
+            ."descricao = '".$object->getDescricao()."' WHERE id = $id";
 
+    $resultado = $this->conexao->query($sql);
+    if(!$resultado){
+        return null;
+    } else {
+        return $this->getById($id);
+    }
   }
 
   public function delete($id) {

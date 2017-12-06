@@ -1,29 +1,14 @@
 <?php
 
-class Roteiro {
+require "models/beans/BaseModel.php";
+
+class Roteiro extends BaseModel{
 
   private $id;
   private $intervalo_entregas;
   private $progresso;
   private $template_id;
   private $time_id;
-
-  public function set($data) {
-    foreach ($data AS $key => $value) $this->{$key} = $value;
-  }
-
-  public function check($required) {
-    $properties = array();
-    foreach($required as $field) {
-        // printf("[%s]:\t", $field);
-        // var_dump(property_exists($this, $field));
-
-        if(is_null($this->{$field})) {
-          array_push($properties, $field);
-        }
-    }
-    return $properties;
-  }
 
   public function getId() {
     return $this->id;
@@ -64,5 +49,4 @@ class Roteiro {
   public function setTimeId($time_id) {
     $this->time_id = $time_id;
   }
-
 }

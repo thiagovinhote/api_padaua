@@ -32,7 +32,7 @@ class BaseController {
               break;
           default:
               http_response_code(405);
-              echo json_encode("Método não implementado.");
+              echo json_encode("Método não Implementado.");
       }
     }
 
@@ -96,9 +96,31 @@ class BaseController {
     }
 
     protected function update() {
+      $json = file_get_contents("php://input");
+      $dados = json_decode($json, true);
+
       $id = $_GET["id"];
       $id = (int)$id;
-      echo json_encode($id);
+      if(empty($id)){
+        http_response_code(404);
+        echo json_encode("É necessário informar um id válido.");
+        return;
+      }
+
+      $model = new $this->modelBean();
+      $object = $this->DAO->getById($id);
+      $model->set($object);
+
+      $model->setUpdate($dados);
+
+      $result = $this->DAO->update($model, $id);
+
+      if($result == null){
+         http_response_code(500);
+      } else {
+         http_response_code(201);
+      }
+      echo json_encode($result);
     }
 
     protected function delete() {
@@ -126,9 +148,5 @@ class BaseController {
         http_response_code(200);
         echo json_encode($object);
       }
-
-
     }
-
-
 }

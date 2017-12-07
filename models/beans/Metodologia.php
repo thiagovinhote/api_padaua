@@ -4,9 +4,9 @@ require "models/beans/BaseModel.php";
 
 class Metodologia extends BaseModel{
 
-  private $id;
-  private $nome;
-  private $descricao;
+  protected $id;
+  protected $nome;
+  protected $descricao;
 
   public function getId() {
     return $this->id;

@@ -67,4 +67,41 @@ class RoteiroDAO implements DAOInterface {
     $sql = "DELETE FROM roteiro WHERE id = ". $id;
     return $this->conexao->query($sql);
   }
+
+  public function model() {
+    $data = new stdClass();
+    $data->nome = 'Roteiro';
+    $data->endpoint = 'http://localhost:8080/padawan-ideas-api/roteiro';
+
+    $recursos = new stdClass();
+    $recursos = [
+      array('action' => 'POST',
+        'fields' =>
+          [
+            array('field' => 'intervalo_entregas', 'type' => 'int', 'required' => 'true'),
+            array('field' => 'progresso', 'type' => 'float', 'required' => 'true'),
+            array('field' => 'template_id', 'type' => 'int', 'required' => 'false'),
+            array('field' => 'time_id', 'type' => 'int', 'required' => 'true')
+          ]
+      ),
+      array('action' => 'GET',
+        'fields' =>
+          [
+            array('field' => 'id', 'type' => 'int', 'required' => 'false'),
+          ]
+      ),
+      array('action' => 'PUT',
+        'fields' =>
+          [
+            array('field' => 'intervalo_entregas', 'type' => 'int', 'required' => 'false'),
+            array('field' => 'progresso', 'type' => 'float', 'required' => 'false'),
+            array('field' => 'template_id', 'type' => 'int', 'required' => 'false'),
+            array('field' => 'time_id', 'type' => 'int', 'required' => 'false')
+          ]
+      ),
+    ];
+
+    $data->recursos = $recursos;
+    return $data;
+  }
 }

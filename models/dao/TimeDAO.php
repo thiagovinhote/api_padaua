@@ -35,7 +35,7 @@ class TimeDAO implements DAOInterface {
         $data = $object->getDataCriacao();
         $descricao = $object->getDescricao();
 
-        $sql = "INSERT INTO time(nome_time, data_criacao, descricao) VALUES('$nome', '$data', '$descricao');";
+        $sql = "INSERT INTO time(nome_time, data_criacao, descricao) VALUES('".$nome."', '".$data."', '".$descricao."');";
 
         $resultado = $this->conexao->query($sql);
         if(!$resultado){
@@ -46,12 +46,59 @@ class TimeDAO implements DAOInterface {
         }
     }
 
-    public function update($object){
-        //
+    public function update($object, $id){
+        $nome = $object->getNomeTime();
+        $data = $object->getDataCriacao();
+        $descricao = $object->getDescricao();
+
+        $sql = "UPDATE time SET nome_time = '".$nome."', data_criacao = '".$data."', descricao = '".$descricao."' WHERE id = '".$id."';";
+        $resultado = $this->conexao->query($sql);
+
+        if(!$resultado){
+            return null;
+        } else {
+            return $this->getById($id);
+        }
     }
 
     public function delete($id){
         $sql = "DELETE FROM time WHERE id = ". $id;
         return $this->conexao->query($sql);
+    }
+
+
+    public function model() {
+      $data = new stdClass();
+      $data->nome = 'Time';
+      $data->endpoint = 'http://localhost:8080/padawan-ideas-api/time';
+
+      $recursos = new stdClass();
+      $recursos = [
+        array('action' => 'POST',
+          'fields' =>
+            [
+              array('field' => 'nome_time', 'type' => 'string', 'required' => 'true', 'max_length' => 100),
+              array('field' => 'data_criacao', 'type' => 'date', 'required' => 'true'),
+              array('field' => 'descricao', 'type' => 'string', 'required' => 'true', 'max_length' => 500)
+            ]
+        ),
+        array('action' => 'GET',
+          'fields' =>
+            [
+              array('field' => 'id', 'type' => 'int', 'required' => 'false'),
+            ]
+        ),
+        array('action' => 'PUT',
+          'fields' =>
+            [
+              array('field' => 'nome_time', 'type' => 'string', 'required' => 'false', 'max_length' => 100),
+              array('field' => 'data_criacao', 'type' => 'date', 'required' => 'false'),
+              array('field' => 'descricao', 'type' => 'string', 'required' => 'false', 'max_length' => 500)
+            ]
+        ),
+      ];
+
+      $data->recursos = $recursos;
+      return $data;
     }
 }

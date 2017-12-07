@@ -3,12 +3,13 @@
 require "models/beans/BaseModel.php";
 
 class Ideia extends BaseModel {
-    private $id;
-    private $nome;
-    private $descricao;
-    private $data_criacao;
-    private $usuario_id;
-    
+    protected $id;
+    protected $nome;
+    protected $descricao;
+    protected $data_criacao;
+    protected $usuario_id;
+
+
     public function getId(){
         return $this->id;
     }

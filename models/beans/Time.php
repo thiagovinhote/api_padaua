@@ -2,10 +2,10 @@
 require "models/beans/BaseModel.php";
 
 class Time extends BaseModel{
-    private $id;
-    private $nome_time;
-    private $data_criacao;
-    private $descricao;
+    protected $id;
+    protected $nome_time;
+    protected $data_criacao;
+    protected $descricao;
 
     public function getId() {
         return $this->id;

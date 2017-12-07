@@ -20,8 +20,16 @@ private function extrairParametros() {
     $recurso = null;
     $id = 0;
     if(!isset($_GET["param"])){
-        http_response_code(404);
-        echo "Recurso não encontrado";
+        // http_response_code(404);
+        // echo "Recurso não encontrado";
+        http_response_code(200);
+        echo json_encode(
+            ['localhost:8080/padawan-ideas-api/ideia', 
+            'localhost:8080/padawan-ideas-api/metodologia', 
+            'localhost:8080/padawan-ideas-api/roteiro',
+            'localhost:8080/padawan-ideas-api/time',
+            'localhost:8080/padawan-ideas-api/usuario']
+        );
         exit;
     } else {
         $url = $_GET["param"];

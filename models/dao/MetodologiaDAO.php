@@ -63,4 +63,37 @@ class MetodologiaDAO implements DAOInterface {
     return $this->conexao->query($sql);
   }
 
+  public function model() {
+    $data = new stdClass();
+    $data->nome = 'Usuario';
+    $data->endpoint = 'http://localhost:8080/padawan-ideas-api/metodologia';
+
+    $recursos = new stdClass();
+    $recursos = [
+      array('action' => 'POST',
+        'fields' =>
+          [
+            array('field' => 'nome', 'type' => 'string','required' => true),
+            array('field' => 'descricao', 'type' => 'string','required' => true)
+          ]
+          ),
+      array('action' => 'GET',
+        'fields' =>
+          [
+            array('field' => 'id', 'type' => 'int','required' => false),
+          ]
+          ),
+      array('action' => 'PUT',
+        'fields' =>
+          [
+            array('field' => 'nome', 'type' => 'string','required' => false),
+            array('field' => 'descricao', 'type' => 'string','required' => false)
+          ]
+          )
+      ];
+
+    $data->recursos = $recursos;
+    return $data;
+  }
+
 }

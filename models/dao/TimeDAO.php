@@ -77,23 +77,23 @@ class TimeDAO implements DAOInterface {
         array('action' => 'POST',
           'fields' =>
             [
-              array('field' => 'nome_time', 'type' => 'string', 'required' => 'true', 'max_length' => 100),
-              array('field' => 'data_criacao', 'type' => 'date', 'required' => 'true'),
-              array('field' => 'descricao', 'type' => 'string', 'required' => 'true', 'max_length' => 500)
+              array('field' => 'nome_time', 'type' => 'string', 'required' => true, 'max_length' => 100),
+              array('field' => 'data_criacao', 'type' => 'date', 'required' => true),
+              array('field' => 'descricao', 'type' => 'string', 'required' => true, 'max_length' => 500)
             ]
         ),
         array('action' => 'GET',
           'fields' =>
             [
-              array('field' => 'id', 'type' => 'int', 'required' => 'false'),
+              array('field' => 'id', 'type' => 'int', 'required' => false),
             ]
         ),
         array('action' => 'PUT',
           'fields' =>
             [
-              array('field' => 'nome_time', 'type' => 'string', 'required' => 'false', 'max_length' => 100),
-              array('field' => 'data_criacao', 'type' => 'date', 'required' => 'false'),
-              array('field' => 'descricao', 'type' => 'string', 'required' => 'false', 'max_length' => 500)
+              array('field' => 'nome_time', 'type' => 'string', 'required' => false, 'max_length' => 100),
+              array('field' => 'data_criacao', 'type' => 'date', 'required' => false),
+              array('field' => 'descricao', 'type' => 'string', 'required' => false, 'max_length' => 500)
             ]
         ),
       ];

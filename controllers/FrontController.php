@@ -24,11 +24,11 @@ private function extrairParametros() {
         // echo "Recurso não encontrado";
         http_response_code(200);
         echo json_encode(
-            ['localhost:8080/padawan-ideas-api/ideia', 
-            'localhost:8080/padawan-ideas-api/metodologia', 
-            'localhost:8080/padawan-ideas-api/roteiro',
-            'localhost:8080/padawan-ideas-api/time',
-            'localhost:8080/padawan-ideas-api/usuario']
+            ['https://padaua.herokuapp.com/ideia', 
+            'https://padaua.herokuapp.com/metodologia', 
+            'https://padaua.herokuapp.com/roteiro',
+            'https://padaua.herokuapp.com/time',
+            'https://padaua.herokuapp.com/usuario']
         );
         exit;
     } else {
